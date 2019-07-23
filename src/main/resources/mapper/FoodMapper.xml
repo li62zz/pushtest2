@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.FoodMapper">
+  <resultMap id="BaseResultMap" type="com.qf.bean.Food">
+    <id column="foodid" jdbcType="VARCHAR" property="foodid" />
+    <result column="foodname" jdbcType="VARCHAR" property="foodname" />
+    <result column="foodprice" jdbcType="DOUBLE" property="foodprice" />
+    <result column="fooddesc" jdbcType="VARCHAR" property="fooddesc" />
+    <result column="foodicon" jdbcType="VARCHAR" property="foodicon" />
+    <result column="foodimage" jdbcType="VARCHAR" property="foodimage" />
+    <result column="foodtypeid" jdbcType="INTEGER" property="foodtypeid" />
+    <result column="foodstatus" jdbcType="INTEGER" property="foodstatus" />
+    <result column="foodcount" jdbcType="INTEGER" property="foodcount" />
+    <result column="createtime" jdbcType="DATE" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    foodid, foodname, foodprice, fooddesc, foodicon, foodimage, foodtypeid, foodstatus, 
+    foodcount, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from food
+    where foodid = #{foodid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from food
+    where foodid = #{foodid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qf.bean.Food">
+    insert into food (foodid, foodname, foodprice, 
+      fooddesc, foodicon, foodimage, 
+      foodtypeid, foodstatus, foodcount, 
+      createtime, updatetime)
+    values (#{foodid,jdbcType=VARCHAR}, #{foodname,jdbcType=VARCHAR}, #{foodprice,jdbcType=DOUBLE}, 
+      #{fooddesc,jdbcType=VARCHAR}, #{foodicon,jdbcType=VARCHAR}, #{foodimage,jdbcType=VARCHAR}, 
+      #{foodtypeid,jdbcType=INTEGER}, #{foodstatus,jdbcType=INTEGER}, #{foodcount,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=DATE}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qf.bean.Food">
+    insert into food
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="foodid != null">
+        foodid,
+      </if>
+      <if test="foodname != null">
+        foodname,
+      </if>
+      <if test="foodprice != null">
+        foodprice,
+      </if>
+      <if test="fooddesc != null">
+        fooddesc,
+      </if>
+      <if test="foodicon != null">
+        foodicon,
+      </if>
+      <if test="foodimage != null">
+        foodimage,
+      </if>
+      <if test="foodtypeid != null">
+        foodtypeid,
+      </if>
+      <if test="foodstatus != null">
+        foodstatus,
+      </if>
+      <if test="foodcount != null">
+        foodcount,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="foodid != null">
+        #{foodid,jdbcType=VARCHAR},
+      </if>
+      <if test="foodname != null">
+        #{foodname,jdbcType=VARCHAR},
+      </if>
+      <if test="foodprice != null">
+        #{foodprice,jdbcType=DOUBLE},
+      </if>
+      <if test="fooddesc != null">
+        #{fooddesc,jdbcType=VARCHAR},
+      </if>
+      <if test="foodicon != null">
+        #{foodicon,jdbcType=VARCHAR},
+      </if>
+      <if test="foodimage != null">
+        #{foodimage,jdbcType=VARCHAR},
+      </if>
+      <if test="foodtypeid != null">
+        #{foodtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="foodstatus != null">
+        #{foodstatus,jdbcType=INTEGER},
+      </if>
+      <if test="foodcount != null">
+        #{foodcount,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.bean.Food">
+    update food
+    <set>
+      <if test="foodname != null">
+        foodname = #{foodname,jdbcType=VARCHAR},
+      </if>
+      <if test="foodprice != null">
+        foodprice = #{foodprice,jdbcType=DOUBLE},
+      </if>
+      <if test="fooddesc != null">
+        fooddesc = #{fooddesc,jdbcType=VARCHAR},
+      </if>
+      <if test="foodicon != null">
+        foodicon = #{foodicon,jdbcType=VARCHAR},
+      </if>
+      <if test="foodimage != null">
+        foodimage = #{foodimage,jdbcType=VARCHAR},
+      </if>
+      <if test="foodtypeid != null">
+        foodtypeid = #{foodtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="foodstatus != null">
+        foodstatus = #{foodstatus,jdbcType=INTEGER},
+      </if>
+      <if test="foodcount != null">
+        foodcount = #{foodcount,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where foodid = #{foodid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.bean.Food">
+    update food
+    set foodname = #{foodname,jdbcType=VARCHAR},
+      foodprice = #{foodprice,jdbcType=DOUBLE},
+      fooddesc = #{fooddesc,jdbcType=VARCHAR},
+      foodicon = #{foodicon,jdbcType=VARCHAR},
+      foodimage = #{foodimage,jdbcType=VARCHAR},
+      foodtypeid = #{foodtypeid,jdbcType=INTEGER},
+      foodstatus = #{foodstatus,jdbcType=INTEGER},
+      foodcount = #{foodcount,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=DATE},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where foodid = #{foodid,jdbcType=VARCHAR}
+  </update>
+</mapper>

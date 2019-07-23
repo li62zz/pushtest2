@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.OrderdetailMapper">
+  <resultMap id="BaseResultMap" type="com.qf.bean.Orderdetail">
+    <id column="detailid" jdbcType="VARCHAR" property="detailid" />
+    <result column="orderid" jdbcType="VARCHAR" property="orderid" />
+    <result column="productid" jdbcType="VARCHAR" property="productid" />
+    <result column="productcount" jdbcType="INTEGER" property="productcount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    detailid, orderid, productid, productcount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orderdetail
+    where detailid = #{detailid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from orderdetail
+    where detailid = #{detailid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qf.bean.Orderdetail">
+    insert into orderdetail (detailid, orderid, productid, 
+      productcount)
+    values (#{detailid,jdbcType=VARCHAR}, #{orderid,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, 
+      #{productcount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qf.bean.Orderdetail">
+    insert into orderdetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="detailid != null">
+        detailid,
+      </if>
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="productid != null">
+        productid,
+      </if>
+      <if test="productcount != null">
+        productcount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="detailid != null">
+        #{detailid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null">
+        #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="productcount != null">
+        #{productcount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qf.bean.Orderdetail">
+    update orderdetail
+    <set>
+      <if test="orderid != null">
+        orderid = #{orderid,jdbcType=VARCHAR},
+      </if>
+      <if test="productid != null">
+        productid = #{productid,jdbcType=VARCHAR},
+      </if>
+      <if test="productcount != null">
+        productcount = #{productcount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where detailid = #{detailid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qf.bean.Orderdetail">
+    update orderdetail
+    set orderid = #{orderid,jdbcType=VARCHAR},
+      productid = #{productid,jdbcType=VARCHAR},
+      productcount = #{productcount,jdbcType=INTEGER}
+    where detailid = #{detailid,jdbcType=VARCHAR}
+  </update>
+</mapper>
